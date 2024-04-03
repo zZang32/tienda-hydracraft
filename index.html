@@ -24,18 +24,12 @@
     />
   </head>
   <body>
-    <div id="loading-screen" class="loading-screen vh-100">
-      <img
-        class="img-fluid h-50 animate__animated animate__infinite infinite animate__shakeX logo"
-        alt="Logo HydraCraft"
-        src="./assets/imgs/logo.png"
-      />
-      <div class="bubbles">
-        <div class="bubble"></div>
+    <div class="container-fluid vh-100 position-fixed">
+      <div id="loading-screen" class="loading-screen">
+        <div class="bubbles">
+          <div class="bubble"></div>
+        </div>
       </div>
-    </div>
-
-    <div class="container-fluid vh-100">
       <div class="row">
         <h1 class="py-5 text-center text-light hydra-brand">
           ✦ <span class="hydra-span">Hydra</span
@@ -43,7 +37,7 @@
         </h1>
         <h3 class="py-3 text-center f-main">¿En qué servidor juegas?</h3>
         <div class="row justify-content-around text-center">
-          <div class="col p-5">
+          <div class="col py-5">
             <div class="card" onClick="redirect('tienda.hydracraft.es')">
               <div class="card-front">
                 <img
@@ -51,6 +45,7 @@
                   alt="Java"
                   class="img img-fluid rounded java-bedrock-img java-img"
                 />
+                <h1 class="text-light py-5">Java</h1>
               </div>
               <div class="card-back">
                 <div class="card-header">
@@ -68,7 +63,7 @@
               </div>
             </div>
           </div>
-          <div class="col p-5">
+          <div class="col py-5">
             <div class="card">
               <div class="card-front">
                 <img
@@ -76,6 +71,7 @@
                   alt="Bedrock"
                   class="img img-fluid rounded java-bedrock-img bedrock-img"
                 />
+                <h1 class="text-light py-5">Bedrock</h1>
               </div>
               <div class="card-back">
                 <div class="card-header">
@@ -112,25 +108,27 @@
       }
 
       function generateBubble() {
+        const maxBubbles = 50;
+        const loadingScreen = document.getElementById("loading-screen");
+        if (loadingScreen.children.length > maxBubbles) {
+          return;
+        }
+
         const bubble = document.createElement("div");
         bubble.classList.add("bubble");
         const size = Math.random() * 60 + 10;
         bubble.style.setProperty("--bubble-size", `${size}px`);
         bubble.style.left = `${Math.random() * 100}%`;
         bubble.style.animationDuration = `${Math.random() * 3 + 2}s`;
+        loadingScreen.appendChild(bubble);
 
-        document.getElementById("loading-screen").appendChild(bubble);
         bubble.addEventListener("animationend", () => {
           bubble.remove();
         });
       }
 
       document.addEventListener("DOMContentLoaded", () => {
-        const intervalId = setInterval(generateBubble, 300);
-        setTimeout(() => {
-          clearInterval(intervalId);
-          document.getElementById("loading-screen").style.display = "none";
-        }, 4000);
+        setInterval(generateBubble, 300);
       });
 
       const choiceText = document.querySelector(".f-bottom");

@@ -46,17 +46,6 @@ body {
     cursor: pointer;
 }
 
-.loading-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: var(--dark-blue);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
 
 .bubbles {
     position: absolute;
@@ -87,7 +76,8 @@ body {
 }
 
 .hydra-brand {
-    text-shadow: 0 0 15px white;
+    text-shadow: 0 0 15px rgb(34, 143, 164);
+    ;
 }
 
 .hydra-span {
@@ -164,4 +154,9 @@ body {
 
 .card.is-flipped {
     transform: rotateY(180deg);
+}
+
+.card img {
+    width: 40%;
+    height: auto;
 }
