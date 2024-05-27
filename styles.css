@@ -124,7 +124,6 @@ body {
     transition: transform 0.8s;
     transform-style: preserve-3d;
     border: none;
-    cursor: pointer;
 }
 
 .card-header,
@@ -156,7 +155,8 @@ body {
     transform: rotateY(180deg);
 }
 
-.card img {
+.img {
     width: 40%;
     height: auto;
+    cursor: pointer;
 }
